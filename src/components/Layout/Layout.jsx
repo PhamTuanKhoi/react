@@ -1,10 +1,16 @@
 import Routers from "../../router/Routers";
+import Footer from "../Footer/Footer";
+import Header from "../Header/Header";
 
 
 const Layout = () => {
     return (
-        <div>cq
-            <Routers />
+        <div>
+            <Header />
+            <div>
+                <Routers />
+            </div>
+            <Footer />
         </div>
     )
 }
