@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import MainLeft from '../components/ui/mainLeft/MainLeft';
+import MainRight from '../components/ui/mainRight/MainRight';
 import Main from '../components/ui/Main';
 import '../styles/Home.scss';
 
@@ -13,7 +14,9 @@ const Home = () => {
        <div className="home_main">
          <Main />
        </div>
-       <div className="home_right">bciib</div>
+       <div className="home_right">
+         <MainRight />
+       </div>
      </div>
     )
 }
