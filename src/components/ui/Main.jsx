@@ -19,7 +19,7 @@ const Main = () => {
                         <div className='posts_name'>Pham Tuan Khoi</div>
                     </Stack>
                     <div className='posts_time'>
-                        <i class="fa fa-clock-o" aria-hidden="true"></i> 05/26/2022 11:58
+                        <i className="fa fa-clock-o" aria-hidden="true"></i> 05/26/2022 11:58
                         </div>
                 </div>
                 <div className="posts_main">
@@ -29,8 +29,8 @@ const Main = () => {
                     </div>
                     <div className="posts_images">
                         <ImageList sx={{ width: 650, height: 450 }} cols={4} rowHeight={164}>
-                        {itemData.map((item) => (
-                            <ImageListItem key={item.img}>
+                        {itemData.map((item, index) => (
+                            <ImageListItem key={index}>
                             <img className="avatar"
                                 src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
                                 srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
@@ -52,7 +52,7 @@ const Main = () => {
                         <div className='posts_name'>Pham Tuan Khoi</div>
                     </Stack>
                     <div className='posts_time'>
-                        <i class="fa fa-clock-o" aria-hidden="true"></i> 05/26/2022 11:58
+                        <i className="fa fa-clock-o" aria-hidden="true"></i> 05/26/2022 11:58
                         </div>
                 </div>
                 <div className="posts_main">
@@ -62,8 +62,8 @@ const Main = () => {
                     </div>
                     <div className="posts_images">
                         <ImageList sx={{ width: 650, height: 450 }} cols={4} rowHeight={164}>
-                        {itemData.map((item) => (
-                            <ImageListItem key={item.img}>
+                        {itemData.map((item, index) => (
+                            <ImageListItem key={index}>
                             <img
                                 src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
                                 srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
