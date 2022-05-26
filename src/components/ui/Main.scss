@@ -1,0 +1,45 @@
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css";
+
+
+.posts_root{
+    // margin-top: 30px;
+    // background: white;
+}
+.posts_container{
+    z-index: -100;
+    background: white;
+}
+.posts_content{
+    margin-top: 15px;
+}
+.posts_header{
+    display: flex;
+    padding-top: 10px;
+}
+.posts_infor{
+    width: 50%;
+}
+
+.posts_name{
+    padding-top: 10px;
+    font-weight: bold;
+}
+.posts_time{
+    width: 50%;
+    padding-top: 10px;
+    text-align: right;
+    color: rgb(128, 128, 249);
+}
+.posts_time > i {
+    font-weight: bold;
+    color: black;
+}
+
+
+.posts_main{
+    // background:rgb(253, 138, 138);
+}
+
+.avatar{
+    z-index: 1;
+}
