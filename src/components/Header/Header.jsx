@@ -6,6 +6,9 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import { NavLink } from "react-router-dom";
+
+import './Header.scss'
 
 const Header = () => {
     return(
@@ -21,8 +24,25 @@ const Header = () => {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              News
+            <Typography variant="h6" component="div" >
+              <NavLink style={{ textDecoration: 'none' }}
+                 to="/home"
+                 className={(navClass) =>
+                  navClass.isActive ? "active" : "noactive"
+                }
+              >
+                 POSTS&nbsp;&nbsp;&nbsp;
+              </NavLink>
+            </Typography>
+            <Typography variant="h6" component="div" className="header_title" sx={{ flexGrow: 1 }}>
+            <NavLink style={{ textDecoration: 'none' }}
+                 to="/create"
+                 className={(navClass) =>
+                  navClass.isActive ? "active" : "noactive"
+                }
+              >
+                 CREATE&nbsp;&nbsp;&nbsp;
+              </NavLink>
             </Typography>
             <Button color="inherit">Login</Button>
           </Toolbar>
@@ -32,3 +52,4 @@ const Header = () => {
 }
 
 export default Header;
+
