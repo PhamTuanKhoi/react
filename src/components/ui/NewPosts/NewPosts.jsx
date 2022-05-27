@@ -3,7 +3,8 @@ import { FormControl, InputLabel, Input, TextareaAutosize } from '@mui/material'
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import { useState } from 'react';
-
+import Fab from '@mui/material/Fab';
+import AddIcon from '@mui/icons-material/Add';
 
 import apiBlog from '../../../api/apiBlog'
 import './newposts.scss';
@@ -69,6 +70,9 @@ const NewPosts = () => {
             >
                 Save
             </Button>
+            <Fab size="small" color="secondary" aria-label="add">
+                <AddIcon />
+            </Fab>
         </div>
     )
 }
