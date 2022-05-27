@@ -1,10 +1,8 @@
 
-import { FormControl, InputLabel, Input, TextareaAutosize } from '@mui/material';
-import Button from '@mui/material/Button';
-import SendIcon from '@mui/icons-material/Send';
+import { FormControl, InputLabel, Input } from '@mui/material'; 
 import { useState } from 'react';
-import Fab from '@mui/material/Fab';
-import AddIcon from '@mui/icons-material/Add';
+import Fab from '@mui/material/Fab'; 
+import TextField from '@mui/material/TextField';
 
 import apiBlog from '../../../api/apiBlog'
 import './newposts.scss';
@@ -14,16 +12,18 @@ const NewPosts = () => {
 
     const [Tag, setTag] = useState('');
     const [Content, setContent] = useState('');
-    const [File, setFile] = useState('');
+    const [File, setFile] = useState([]);
 
+    const formData = new FormData();
 
     const handleSubmit = async () => {
         try {
-            const reponse = await apiBlog.post('http://localhost:3000/authors',{
-                "name": Tag,
-                "birth": Content,
-                "file": File
-            }, {
+            for (let i = 0; i < File.length; i++) {
+                formData.append(`files`, File[i])
+            }
+            formData.append("tag", Tag);
+            formData.append("content", Content);
+            const reponse = await apiBlog.post('http://localhost:3000/posts', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 },
@@ -34,44 +34,48 @@ const NewPosts = () => {
         }
     }
 
-    console.log(File.name)
-
+    // for (let i = 0; i < File.length; i++) {
+    //     const file = (`images[${i}]`, File[i])
+    //     console.log(file)
+    // }
+console.log(formData);
 
     return(
         <div className="NewPosts_root">
-            <FormControl sx={{ m: 1, width: '80ch' }}>
-                <InputLabel htmlFor="my-input">Tag</InputLabel>
-                <Input 
-                    id="my-input" 
-                    name="tag"
-                    value={Tag}
-                    onChange={e => setTag(e.target.value)}
-                 />
-            </FormControl>
-            <TextareaAutosize 
-                style={{ width: '95ch', borderRight: 'none', borderLeft: 'none', borderTop: 'none', outline: 'none', margin: '10px'}}
-                className="posts_texttarea"
-                aria-label="minimum height"
-                minRows={5}
-                placeholder="Posts Content:"
-                name="content"
-                value={Content}
+            <h1 className="NewPosts_title">New Posts</h1>
+            <InputLabel htmlFor="my-input">Tag</InputLabel>
+                <FormControl sx={{ m: 3, width: '70ch' }}>
+                    <Input 
+                        id="my-input" 
+                        name="tag"
+                        onChange={e => setTag(e.target.value)}
+                    />
+                </FormControl>
+            <InputLabel htmlFor="my-input">Content</InputLabel>
+                <TextField  sx={{ m: 3, width: '70ch' }}
+                id="standard-multiline-static"
+                multiline
+                rows={4}
+                // defaultValue="Default Value"
+                variant="standard"
                 onChange={e => setContent(e.target.value)}
-            /> <br />
-            <input 
-                multiple
-                type="file"
-                onChange={e => setFile(e.target.files[0])}
-
-            />
-            <Button 
-                style={{ marginLeft: '80ch', marginBottom: '20px'}}variant="contained" endIcon={<SendIcon />}
+                />
+            <InputLabel htmlFor="my-input">Images</InputLabel>
+                <FormControl sx={{ m: 3, width: '70ch' }}>
+                <input 
+                    multiple
+                    type="file"
+                    onChange={e => setFile(e.target.files)}
+                />
+                </FormControl>
+            <Fab 
+                size="secondary" 
+                color="secondary" 
+                aria-label="add" 
+                style={{ marginLeft: '85%'}}
                 onClick={handleSubmit}
             >
                 Save
-            </Button>
-            <Fab size="small" color="secondary" aria-label="add">
-                <AddIcon />
             </Fab>
         </div>
     )
