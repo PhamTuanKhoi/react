@@ -46,6 +46,7 @@ const Main = () => {
                             </div>
                             <div className="posts_main">
                                 <div className="posts_content">
+                                <p className="posts_tag">#{post.tag}</p> 
                                     {post.content}
                                 </div>
                                 <div className="posts_images">

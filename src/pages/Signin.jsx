@@ -18,7 +18,7 @@ const Signin = () => {
 
     const handleSubmit = async() => {
         try {
-            const reponse = await api.post('http://localhost:3000/users', {
+            await api.post('http://localhost:3000/users', {
             'name': Name,
             'birth': Birth,
             'file': File
@@ -27,13 +27,15 @@ const Signin = () => {
                 'Content-Type': 'multipart/form-data'
               }
             });
-            console.log(reponse);
+            setName('')
+            setBirth('')
+            setFile('')
+            alert('sign in success');
         } catch (error) {
             console.log('err create user', error);
+            alert('sign in to faile !')
         }
     }
-
-    console.log(File);
     return(
         <div style={{paddingTop: '100px'}}>
             <Paper
@@ -56,6 +58,7 @@ const Signin = () => {
                     <Input 
                         id="my-input" 
                         name="name"
+                        value={Name}
                         onChange={e => setName(e.target.value)}
                     />
                 </FormControl>
@@ -65,6 +68,7 @@ const Signin = () => {
                     type="datetime-local"
                         id="my-input" 
                         name="birth"
+                        value={Birth}
                         onChange={e => setBirth(e.target.value)}
                     />
                 </FormControl>

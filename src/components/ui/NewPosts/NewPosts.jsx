@@ -23,21 +23,18 @@ const NewPosts = () => {
             }
             formData.append("tag", Tag);
             formData.append("content", Content);
-            const reponse = await apiBlog.post('http://localhost:3000/posts', formData, {
+            await apiBlog.post('http://localhost:3000/posts', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 },
             });
-            console.log(reponse);
+            alert('Create a new Posts success')
         } catch (error) {
             console.error(error);
+            alert('Create a new Posts faile!')
         }
     }
-
-    // for (let i = 0; i < File.length; i++) {
-    //     const file = (`images[${i}]`, File[i])
-    //     console.log(file)
-    // }
+ 
 console.log(formData);
 
     return(
