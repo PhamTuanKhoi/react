@@ -1,6 +1,7 @@
 .MainLeft_root{
     background: white;
     width: 350px;
+    height: 600px;
     position: fixed;
 }
 
@@ -9,3 +10,9 @@
     padding: 10px;
     border-bottom: 1px solid rgb(157, 151, 151);
 }
+
+.mainleft_title{
+    text-align: center;
+    background: rgb(224, 222, 222);
+}
+

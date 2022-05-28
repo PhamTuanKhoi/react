@@ -12,9 +12,9 @@ const MainLeft = () => {
     const [users, setUsers] = useState([]);
     
     
-    
+
     const getAllUsers = async() =>{
-        const reponse = await apiUsers.get('http://localhost:3000/authors');
+        const reponse = await apiUsers.get('http://localhost:3000/users');
         return reponse.data;
     }
 
@@ -32,7 +32,7 @@ const MainLeft = () => {
 
     return (
     <div className="MainLeft_root">
-        <p>User</p>
+        <h3 className="mainleft_title">Online</h3>
         {
             users.map((user, index) => {
                 return (
