@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -8,10 +8,44 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { NavLink } from "react-router-dom";
 
-
+import api from '../../api/apiBlog'
 import './Header.scss'
 
 const Header = () => {
+  const isLogin = true;
+  const [Token, setToken] = useState('');
+
+  // const currentUser = async() =>{
+  //   const reponse = await api.post('http://localhost:3000/auths/currentUser', {
+  //         "req_token": token.data.access_token
+  //       },
+  //       {
+  //         headers: {
+  //           'Content-Type': 'application/json'
+  //         }
+  //       })
+  //       return reponse;
+  // }
+
+  useEffect(() => {
+    const token = JSON.parse(localStorage.getItem('token'));
+    setToken(token);
+
+    if( token !== '' && token !== null) {
+    
+      api.post('http://localhost:3000/auths/currentUser', {
+              "req_token": token.data.access_token
+            },
+            {
+              headers: {
+                'Content-Type': 'application/json'
+              }
+            })
+            .then(data => console.log(data))
+            .catch(err => console.error(err))    
+    }
+
+  }, [Token])
     return(
         <div>
           <Box sx={{ flexGrow: 1, position: 'fixed', width: '100%', zIndex: 100}}>
@@ -47,28 +81,32 @@ const Header = () => {
                   CREATE&nbsp;&nbsp;&nbsp;
                 </NavLink>
               </Typography>
-              <Button color="inherit" >
-                  <NavLink
-                    style={{ textDecoration: 'none' }}
-                    to="/login"
-                    className={(navClass) =>
-                      navClass.isActive ? "active" : "noactive"
-                    } 
-                  >
-                    Login
-                  </NavLink>
-              </Button>
-              <Button color="inherit">
-                <NavLink
-                  style={{ textDecoration: 'none' }}
-                  to="/signin"
-                  className={(navClass) =>
-                    navClass.isActive ? "active" : "noactive"
-                  } 
-                >
-                  Signin
-                </NavLink>
-              </Button>
+              {
+                isLogin && <React.Fragment>
+                              <Button color="inherit" >
+                                  <NavLink
+                                    style={{ textDecoration: 'none' }}
+                                    to="/login"
+                                    className={(navClass) =>
+                                      navClass.isActive ? "active" : "noactive"
+                                    } 
+                                  >
+                                    Login
+                                  </NavLink>
+                              </Button>
+                              <Button color="inherit">
+                                <NavLink
+                                  style={{ textDecoration: 'none' }}
+                                  to="/signin"
+                                  className={(navClass) =>
+                                    navClass.isActive ? "active" : "noactive"
+                                  } 
+                                >
+                                  Signin
+                                </NavLink>
+                              </Button>
+                </React.Fragment>
+              }
             </Toolbar>
           </AppBar>
         </Box>
