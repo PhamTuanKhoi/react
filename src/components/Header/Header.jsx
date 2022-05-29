@@ -11,11 +11,7 @@ import { NavLink } from "react-router-dom";
 
 import './Header.scss'
 
-
-
-
 const Header = () => {
-
     return(
         <div>
           <Box sx={{ flexGrow: 1, position: 'fixed', width: '100%', zIndex: 100}}>
@@ -51,7 +47,17 @@ const Header = () => {
                   CREATE&nbsp;&nbsp;&nbsp;
                 </NavLink>
               </Typography>
-              <Button color="inherit" >Login</Button>
+              <Button color="inherit" >
+                  <NavLink
+                    style={{ textDecoration: 'none' }}
+                    to="/login"
+                    className={(navClass) =>
+                      navClass.isActive ? "active" : "noactive"
+                    } 
+                  >
+                    Login
+                  </NavLink>
+              </Button>
               <Button color="inherit">
                 <NavLink
                   style={{ textDecoration: 'none' }}
